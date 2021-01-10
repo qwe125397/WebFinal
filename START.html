@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+
+<!-- Fig. 2.4: contact.html -->
+<!-- Linking to an e-mail address. -->
+<html>
+   <head>
+    <script src="jquery-3.5.1.js">
+    </script>
+      <script> 
+      
+      $(document).ready(function(){
+        const result = document.querySelector('.result');
+        var backgroundURL;
+	      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+        fetch(proxyurl+'https://webfinal0.herokuapp.com/getBack', {})
+        .then(response => response.text())
+        .then(contents =>backgroundURL= "https://i.imgur.com/"+contents+".jpg")
+        setInterval(function(){
+        document.body.setAttribute("background",backgroundURL )
+        document.body.setAttribute("background-size","400px  400px") },1500);
+        var flag=0;
+        $(document).click(function(){
+          if(flag==0){
+          flag=1;
+          $("#thief").fadeIn();
+          setInterval(function(){
+            $("#thief").animate({right:'10000px'})
+            $("#title").fadeOut()
+            $("#thief1").fadeIn();
+            $("#thief2").fadeIn();
+                setInterval(function(){
+                $("#thief1").animate({left:'13000px'})
+                $("#thief2").animate({left:'13000px'})
+                $("#ppt").fadeOut()
+                $("#hint").fadeOut()
+                $("#thief3").fadeIn();
+                $("#thief4").fadeIn();
+                var layer =setInterval(function(){
+                            $("#thief3").animate({right:'13000px'})
+                            $("#thief4").animate({right:'13000px'})
+                            $("#interview").fadeOut()
+                            $("#story").fadeOut()
+                            },1500);
+                },1500);
+        },1500);
+        setTimeout(function(){
+          alert("Help! Our website was stolen")
+	            document.captureEvents(Event.MOUSEMOVE);
+              document.onmousemove = netscapeMouseMove;
+              $("html").css("cursor","pointer");
+              $("title").text("x:demon/y:angel");
+          function netscapeMouseMove(e) {
+            $("#xset").text("x:"+e.screenX);
+            $("#yset").text("y:"+e.screenY);
+          }
+
+          function micro$oftMouseMove() {
+	          $("#xset").text("x:"+window.event.x); 
+	          $("#yset").text("y:"+window.event.y);
+          }
+          $(document).click(function(){
+          if($("#xset").text()=="x:666"&&$("#yset").text()=="y:444"){
+            alert("you found the key!")
+            window.open("puzzle.html")
+          }
+          });
+          },5000);
+        }
+        });
+      });
+      </script> 
+      <meta charset = "utf-8">
+      <title>Contact Page</title>
+      <style>
+         body{background-color: black;
+             background-size: cover;
+         }
+         h1{color:white;
+         }
+         
+         img{
+             width: 60px;
+             height: 60px;
+             float: right;
+         }
+         .ab{
+             text-decoration: underline;
+         }
+         </style>
+   </head>
+
+   <body id="body" >
+     
+      <h1 align="center" id="title"style="position:absolute;top:30px;left:450px;">
+         Welcome to our website!
+      <img id="thief" src="thief_left.png" style="position: relative;display:none; align-self: start;"> </img>
+      </h1>
+      <br>
+      <br>
+      <img id="thief1" src="thief_right.png" style="position: absolute;display:none; right:60px;"> </img><img src="PPTICON.jfif" id="ppt" >
+      <br>
+      <br>
+      <h1 id="xset"></h1>
+      <h1 id="yset"></h1>
+      <br>
+      <br>
+      <img id="thief2" src="thief_right.png" style="position: absolute;display:none; right:60px;"><img src="hint.jfif" id="hint">
+      <h1 class="ab" align="center" id="interview">
+        About us
+        <img id="thief3" src="thief_left.png" style="position: absolute;display:none; right:60px;">
+    </h1>
+    <h1 class="ab" align="center" id="story">
+        Story
+        <img id="thief4" src="thief_left.png" style="position: absolute;display:none; right:60px;">
+    </h1>
+   </body>
+</html>
+
+<!--
+**************************************************************************
+* (C) Copyright 1992-2012 by Deitel & Associates, Inc. and               *
+* Pearson Education, Inc. All Rights Reserved.                           *
+*                                                                        *
+* DISCLAIMER: The authors and publisher of this book have used their     *
+* best efforts in preparing the book. These efforts include the          *
+* development, research, and testing of the theories and programs        *
+* to determine their effectiveness. The authors and publisher make       *
+* no warranty of any kind, expressed or implied, with regard to these    *
+* programs or to the documentation contained in these books. The authors *
+* and publisher shall not be liable in any event for incidental or       *
+* consequential damages in connection with, or arising out of, the       *
+* furnishing, performance, or use of these programs.                     *
+**************************************************************************
+-->

@@ -1,0 +1,58 @@
+<form id="imgur">
+    <input type="file" class="imgur" accept="image/*" data-max-size="50000"/>
+    <input type="button" id="upbutton" value="上傳(限上傳.jpg檔)"/>
+</form>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script>
+    var apiUrl = 'https://api.imgur.com/3/image';
+    var apiKey = 'f2c1e3d6a6c83b0';
+    var token ='a20630cee506582c71400169f2da66665febd094';
+    var formData = new FormData();
+    function upup(){
+                    var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": apiUrl,
+                    "method": "POST",
+                    "datatype": "json",
+                    "headers": {
+                        "Authorization": 'Bearer ' + token
+                    },
+                    "processData": false,
+                    "contentType": false,
+                    "data": formData,
+                    beforeSend: function (xhr) {
+                        console.log("Uploading | 上传中");
+                    },
+                    success: function (res) {
+                        console.log(res.data.link);
+                        $('body').append('<img src="' + res.data.link + '" />');
+                        link=res.data.link.split('.com/')[1];
+                        link1=link.split('.')[0]
+                        const result = document.querySelector('.result');
+	                    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+                        fetch(proxyurl+'https://webfinal0.herokuapp.com/newBack/'+link1, {})
+                    },
+
+                    error: function () {
+                        alert("Failed | 上传失败");
+                    }
+                }
+                $.ajax(settings).done(function (response) {
+                    console.log("Done | 成功");
+                });
+            }
+    $("document").ready(function () {
+        $('input[type=file]').on("change", function () {
+            var $files = $(this).get(0).files;
+            if ($files.length) {
+                if ($files[0].size > $(this).data("max-size") * 1024) {
+                    console.log("Please select a smaller file");
+                    return false;
+                }
+                formData.append("image", $files[0]);
+                document.getElementById("upbutton").addEventListener("click",upup,false)
+            }
+        });
+    });
+</script>
